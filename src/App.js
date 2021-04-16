@@ -1,4 +1,3 @@
-
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -10,9 +9,11 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpenActive] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpenActive] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpenActive] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
-
-
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
   function handleEditProfileClick() {
     setEditProfilePopupOpenActive(true);
   }
@@ -27,6 +28,7 @@ function App() {
     setEditAvatarPopupOpenActive(false);
     setAddPlacePopupOpenActive(false);
     setEditProfilePopupOpenActive(false);
+    setSelectedCard(null);
   }
 
 
@@ -36,7 +38,8 @@ function App() {
         <Header />
         <Main onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}/>
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}/>
         <Footer />
         <PopupWithFrom title="Редактировать профиль" name="edit-profile" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
           <input name="name" type="text" placeholder="Имя" defaultValue="" className="popup__input popup__input_type_name" required minLength="2" maxLength="40" />
@@ -57,7 +60,7 @@ function App() {
           <span className="image-input-error popup__error-message"></span>
           <button type="submit" className="popup__submit-button">Сохранить</button>
         </PopupWithFrom>
-        <ImagePopup />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       </div>
     </div>
   );

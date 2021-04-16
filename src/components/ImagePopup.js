@@ -1,11 +1,10 @@
-
-function ImagePopup() {
+function ImagePopup(props) {
   return (
-    <section className="popup popup-illustration-container">
+    <section className={`popup popup-illustration-container ${props.card && 'popup_opened'}`}>
       <figure className="popup-illustration">
-          <img className="popup-illustration__img" alt="фото иллюстрации" src="images/karachaevsk.jpg"/>
-          <figcaption className="popup-illustration__title">Карачаево-Черкессия</figcaption>
-          <button type="button" className="popup__close-button"></button>    
+          <img className="popup-illustration__img" alt="фото иллюстрации" src={props.card ? props.card.link : ""}/>
+          <figcaption className="popup-illustration__title">{props.card ? props.card.name: ""}</figcaption>
+          <button type="button" className="popup__close-button" onClick={props.onClose}></button>    
       </figure>
     </section>
   )
