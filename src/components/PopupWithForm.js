@@ -1,4 +1,4 @@
-function PopupWithFrom(props) {
+function PopupWithForm(props) {
   return (
     <section className={props.isOpen ? (`popup popup-${props.name} popup_opened`) : (`popup popup-${props.name}`)}>
       <div className="popup__container">
@@ -12,4 +12,4 @@ function PopupWithFrom(props) {
   )
 }
 
-export default PopupWithFrom;
+export default PopupWithForm;
