@@ -1,7 +1,7 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import PopupWithFrom from "./components/PopupWithForm";
+import PopupWithForm from "./components/PopupWithForm";
 import ImagePopup from "./components/ImagePopup";
 import React from 'react';
 
