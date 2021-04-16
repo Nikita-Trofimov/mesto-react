@@ -1,31 +1,17 @@
 import avatar from "../../src/images/avatar__kusto.jpg";
-function Main() {
-  function openPopup(popup) {
-    popup.classList.add('popup_opened');
-  }
-  
-  function handleEditAvatarClick() {
-    openPopup(document.querySelector('.popup-edit-avatar'));
-  }
-  function handleEditProfileClick() {
-    openPopup(document.querySelector('.popup-edit-profile'));
-  }
-  function handleAddPlaceClick() {
-    openPopup(document.querySelector('.popup-add-card'));
-  }
-
+function Main(props) {
   return (
     <main className="main">
       <section className="profile">
         <div className="profile__avatar-overlay">
-          <img src={avatar} alt="фото аватара профиля" className="profile__photo" onClick = {handleEditAvatarClick} />
+          <img src={avatar} alt="фото аватара профиля" className="profile__photo" onClick = {props.onEditAvatar} />
         </div>
         <div className="profile__text">
           <h1 className="profile__title"></h1>
-            <button type="button" className="profile__edit-button" onClick={handleEditProfileClick}></button>
+            <button type="button" className="profile__edit-button" onClick={props.onEditProfile}></button>
             <p className="profile__subtitle"></p>
         </div>
-        <button type="button" className="profile__add-button" onClick={handleAddPlaceClick}></button>
+        <button type="button" className="profile__add-button" onClick={props.onAddPlace}></button>
       </section>
             
       <section className="cards-section">
