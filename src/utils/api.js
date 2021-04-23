@@ -24,16 +24,12 @@ class Api {
     .then(this._checkResponse);
   }
   
-  _getInitialCards(url) {
+  getInitialCards(url) {
     return this._fetch(url);
   }
 
-  _getProfile(url) {
+  getProfile(url) {
     return this._fetch(url)
-  }
-  
-  getInitialData() {
-    return Promise.all([this._getInitialCards('/cards'), this._getProfile('/users/me')])
   }
 
   updateProfile(name, about) {
