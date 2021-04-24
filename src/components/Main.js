@@ -7,14 +7,20 @@ function Main(props) {
   const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(currentUserContext);
 
-function handleCardLike(card) {
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
-  // Отправляем запрос в API и получаем обновлённые данные карточки
-  // console.log(api.changeLikeCardStatus(card._id, !isLiked));
-  api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-  });
-} 
+    }).catch(err => console.log('Ошибка ' + err));
+  } 
+
+  function handleCardDelete(card) {
+    api.removeCard(card._id).then(() => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    }).catch(err => console.log('Ошибка ' + err));;
+
+  }
 
   React.useEffect(() => {
     api.getInitialCards('/cards')
@@ -23,7 +29,6 @@ function handleCardLike(card) {
     })
     .catch(err => console.log('Ошибка ' + err));
   }, []);
-
   
   return (
     <main className="main">
@@ -42,7 +47,11 @@ function handleCardLike(card) {
       <section className="cards-section">
         <ul className="cards">
         {cards.map(card => { return (
-          <Card key={card._id} card={card} onCardClick={props.onCardClick} onCardLike={handleCardLike} /> 
+          <Card key={card._id}
+           card={card}
+           onCardClick={props.onCardClick}
+           onCardLike={handleCardLike}
+           onCardDelete ={handleCardDelete} /> 
         )})}
         </ul>
       </section>
