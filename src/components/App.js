@@ -6,6 +6,7 @@ import ImagePopup from './ImagePopup';
 import React from 'react';
 import { api } from '../utils/api';
 import { currentUserContext } from '../contexts/CurrentUserContext';
+import EditProfilePopup from './EditProfilePopup';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpenActive] = React.useState(false);
@@ -41,6 +42,13 @@ function App() {
     setEditProfilePopupOpenActive(false);
     setSelectedCard(null);
   }
+  function handleUpdateUser({ name, about }) {
+    api.updateProfile(name, about).then((profile) => {
+      setCurrentUser(profile);
+      closeAllPopups();
+    })
+    .catch(err => console.log('Ошибка ' + err));
+  }
 
   return (
     <currentUserContext.Provider value={currentUser}>
@@ -52,7 +60,7 @@ function App() {
                 onEditAvatar={handleEditAvatarClick}
                 onCardClick={handleCardClick}/>
           <Footer />
-          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
           <PopupWithForm title="Новое место" name="add-card" submitButtonTitle="Создать" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
             <input name="name" type="text" placeholder="Название" className="popup__input popup__input_type_name" required minLength="2" maxLength="30" />
             <span className="name-input-error popup__error-message"></span>
