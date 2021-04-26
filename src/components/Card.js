@@ -1,5 +1,6 @@
 import { currentUserContext } from '../contexts/CurrentUserContext';
 import React from 'react';
+import errorImg from '../images/imgNotFound.png';
 
 function Card ({ card, onCardClick, onCardLike, onCardDelete }){
   const currentUser = React.useContext(currentUserContext);
@@ -23,10 +24,14 @@ function Card ({ card, onCardClick, onCardLike, onCardDelete }){
   function handleCardDelete() {
     onCardDelete(card);
   } 
-   
+  
+  function errorLoadImg(evt){
+    evt.target.src=errorImg;
+  };
+  
   return (
     <li className="card">
-      <img src={card.link} alt={card.name} className="card__image" onClick={handleClick}/>
+      <img onError={(evt) => errorLoadImg(evt)} src={card.link} alt={card.name} className="card__image" onClick={handleClick}/>
         <div className="card__image-subtitle">
           <h2 className="card__title">{card.name}</h2>
           <div className="card__like-info-container">
