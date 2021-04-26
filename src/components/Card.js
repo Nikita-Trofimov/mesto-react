@@ -31,7 +31,7 @@ function Card ({ card, onCardClick, onCardLike, onCardDelete }){
   
   return (
     <li className="card">
-      <img onError={(evt) => errorLoadImg(evt)} src={card.link} alt={card.name} className="card__image" onClick={handleClick}/>
+      <img onError={errorLoadImg} src={card.link} alt={card.name} className="card__image" onClick={handleClick}/>
         <div className="card__image-subtitle">
           <h2 className="card__title">{card.name}</h2>
           <div className="card__like-info-container">
