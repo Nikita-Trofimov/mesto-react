@@ -23,11 +23,11 @@ class Api {
     .then(this._checkResponse);
   }
   
-  getInitialCards(url) {
+  getInitialCards(url='/cards') {
     return this._fetch(url);
   }
 
-  getProfile(url) {
+  getProfile(url='/users/me') {
     return this._fetch(url)
   }
 

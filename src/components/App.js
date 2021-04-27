@@ -12,7 +12,7 @@ import AddPlacePopup from './AddPlacePopup';
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpenActive] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpenActive] = React.useState(false);
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpenActive] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpenActive] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -33,7 +33,7 @@ function App() {
   }
 
   React.useEffect(() => {
-    api.getInitialCards('/cards')
+    api.getInitialCards()
     .then((cards) => {
       setCards(cards);
     })
@@ -41,7 +41,7 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    api.getProfile('/users/me')
+    api.getProfile()
     .then((profile) => {
       setCurrentUser(profile);
     })
@@ -58,11 +58,11 @@ function App() {
     setAddPlacePopupOpenActive(true);
   }
   function handleEditAvatarClick() {
-    setEditAvatarPopupOpenActive(true);
+    setIsEditAvatarPopupOpenActive(true);
   }
   
   function closeAllPopups() {
-    setEditAvatarPopupOpenActive(false);
+    setIsEditAvatarPopupOpenActive(false);
     setAddPlacePopupOpenActive(false);
     setEditProfilePopupOpenActive(false);
     setSelectedCard(null);
