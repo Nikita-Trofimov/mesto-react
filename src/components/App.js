@@ -4,7 +4,7 @@ import Main from './Main';
 import ImagePopup from './ImagePopup';
 import React from 'react';
 import { api } from '../utils/api';
-import { СurrentUserContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
@@ -93,7 +93,7 @@ function App() {
   }
 
   return (
-    <СurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
         <div className="page">
           <Header />
@@ -111,7 +111,7 @@ function App() {
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>
       </div>
-    </СurrentUserContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 

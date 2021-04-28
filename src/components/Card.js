@@ -1,9 +1,9 @@
-import { СurrentUserContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import React from 'react';
 import errorImg from '../images/imgNotFound.png';
 
 function Card ({ card, onCardClick, onCardLike, onCardDelete }){
-  const currentUser = React.useContext(СurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = (
     `card__remove ${isOwn ? '' : 'card__remove_display-none'}`

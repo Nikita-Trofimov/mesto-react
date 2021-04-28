@@ -1,5 +1,5 @@
 import React from "react";
-import { СurrentUserContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Card from './Card';
 
 function Main({
@@ -11,7 +11,7 @@ function Main({
   onCardLike,
   onCardDelete
 }) {
-  const currentUser = React.useContext(СurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
   
   return (
     <main className="main">

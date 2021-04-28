@@ -1,11 +1,11 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-import { СurrentUserContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
-  const currentUser = React.useContext(СurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     currentUser.name !== undefined && setName(currentUser.name);
